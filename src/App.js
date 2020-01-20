@@ -23,7 +23,6 @@ const List = ({list}) => {
     ) : (
       <p>type your query above to search Hacker News...</p>
     )
-      
   )
 }
 
@@ -36,7 +35,7 @@ class App extends React.Component {
   }
 
   getStories = () => {
-    let url;
+    let url = '';
 
     switch (this.state.sortBy) {
       case 'Date':
@@ -47,7 +46,7 @@ class App extends React.Component {
         break;
       default: break;
     }
-    if (this.state.queryText.length > 0) {
+    if (this.state.queryText.length > 0 && url.length > 0) {
       this.setState({ isLoading: true });
       fetch(url)
         .then(response => response.json())
@@ -61,6 +60,7 @@ class App extends React.Component {
           results: posts,
           isLoading: false
         }))
+        .catch(err => console.log(err))
     }
   }
 
