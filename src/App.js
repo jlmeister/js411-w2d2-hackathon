@@ -6,7 +6,9 @@ const Story = (props) => {
   const { timestamp, title, url, author } = props;
   return (
     <article>
-      <a href={url} target="_blank"><h1 className='title'>{title}</h1></a>
+      <a href={url} target="_blank">
+        <h1 className='title'>{title}</h1>
+      </a>
       <p className='posted'>{moment(timestamp).fromNow()} | {author}</p>
     </article>
   )
@@ -76,8 +78,7 @@ class App extends React.Component {
   onSelectChange = (e) => {
     this.setState({
       sortBy: e.target.value
-    })
-    setTimeout(() => { this.getStories() }, 0);
+    }, this.getStories)
   }
 
   render() {
